@@ -1,6 +1,10 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import * as React from "react";
+import Button from "@mui/material/Button";
 
-export default function Test() {
-  return <button>Click, please.</button>;
+export default function MyApp() {
+  return (
+    <div>
+      <Button variant="contained">Hello World</Button>
+    </div>
+  );
 }
