@@ -18,13 +18,9 @@ export default function Character() {
         if (typeof json !== "object") {
           throw new Error(`Response is not a JSON object!`);
         }
-        // if (!json.hasOwnProperty("character")) {
-        //   throw new Error(`JSON object does not contain 'character' property!`);
-        // }
 
-        const properties = Object.keys(json);
-        console.log(`The properties of the JSON object are: ${properties}`);
-        
+        console.log(json); // logging the entire json object to the console
+
         setData(json);
         setLoading(false);
       } catch (error) {
@@ -34,22 +30,32 @@ export default function Character() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (data) {
-      console.log(`The character value is: ${data.character}`);
-    }
-  }, [data]);
-
   if (error) {
     return <div>An error occurred: {error.message}</div>;
   }
-
+  // const character = data.Character;
   return (
     <div>
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div>{`The character value is: ${data.character}`}</div>
+        <div>
+          {`Name: ${data.Character.Name}`}
+          <br />
+          Photo:
+          <img src={data.Character.Portrait} width="300px"></img>
+          <br />
+          Jobs:
+          <br />
+          {/* <ul>
+            {data.Character.ClassJobs.map((job, index) => (
+              <li key={index}>
+                <p>{`Class: ${job.Name}`}</p>
+                <p>{`Level: ${job.Level}`}</p>
+              </li>
+            ))}
+          </ul> */}
+        </div>
       )}
     </div>
   );
